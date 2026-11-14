@@ -15,90 +15,115 @@ box-sizing:border-box;
 }
 
 body{
-font-family:Segoe UI,Arial,sans-serif;
-background:#f4f7f4;
-color:#333;
+font-family:'Segoe UI',sans-serif;
+background:#edf1ee;
+color:#2d2d2d;
 }
 
 header{
-background:linear-gradient(135deg,#2d6a4f,#40916c);
+background:#3f8f67;
 color:white;
 text-align:center;
 padding:40px 20px;
 }
 
 .logo{
-max-width:350px;
+max-width:380px;
 width:90%;
-margin-bottom:20px;
 background:white;
-padding:15px;
-border-radius:15px;
+padding:10px;
+border-radius:20px;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+margin-bottom:20px;
+}
+
+.badge{
+display:inline-block;
+background:#e8f5e9;
+color:#2d6a4f;
+padding:10px 20px;
+border-radius:999px;
+margin-bottom:30px;
+}
+
+header h1{
+font-size:3rem;
+margin-bottom:20px;
+}
+
+header p{
+font-size:1.5rem;
 }
 
 .container{
-max-width:1200px;
+max-width:1400px;
 margin:auto;
-padding:40px 20px;
+padding:60px 30px;
 }
 
 .section-title{
 text-align:center;
-margin-bottom:30px;
+font-size:2.5rem;
 color:#2d6a4f;
+margin-bottom:40px;
 }
 
 .cards{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:30px;
 }
 
 .card{
 background:white;
-border-radius:15px;
-padding:25px;
-box-shadow:0 4px 15px rgba(0,0,0,0.1);
+padding:30px;
+border-radius:20px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
 }
 
 .card h2{
-margin-bottom:15px;
 color:#2d6a4f;
+margin-bottom:20px;
+font-size:2rem;
 }
 
 .card p{
-margin-bottom:20px;
-line-height:1.5;
+font-size:1.1rem;
+line-height:1.6;
+margin-bottom:25px;
 }
 
 .btn{
 display:inline-block;
-padding:12px 20px;
-background:#2d6a4f;
+background:#3f8f67;
 color:white;
+padding:15px 25px;
 text-decoration:none;
-border-radius:8px;
 font-weight:bold;
+border-radius:12px;
+border:2px solid #1f1f1f;
 }
 
 .btn:hover{
-background:#1b4332;
+background:#2d6a4f;
 }
 
 .coming{
-background:#999;
+background:#d6dade;
+color:#555;
+border:none;
 }
 
 footer{
 background:#1b4332;
 color:white;
 text-align:center;
-padding:30px;
+padding:35px;
 margin-top:50px;
 }
 
 footer p{
-margin:8px 0;
+margin:10px 0;
 }
 
 </style>
@@ -112,16 +137,20 @@ margin:8px 0;
 alt="Logo Lycée Pommerit"
 class="logo">
 
-<h1>🌱 BTS Agronomie Cultures Durables</h1>
+<div class="badge">
+📚 Ressources pédagogiques numériques
+</div>
 
-<p>Ressources pédagogiques numériques</p>
+<h1>BTS Agronomie Cultures Durables</h1>
+
+<p>Lycée Pommerit</p>
 
 </header>
 
 <div class="container">
 
 <h2 class="section-title">
-📚 Ressources BTS ACD
+📚 Ressources pédagogiques
 </h2>
 
 <div class="cards">
@@ -131,7 +160,7 @@ class="logo">
 <h2>💧 Mission Hydrique</h2>
 
 <p>
-Comprendre le rôle de l'eau dans le fonctionnement des végétaux.
+Comprendre le rôle de l'eau dans le fonctionnement des végétaux et tester ses connaissances grâce à une activité interactive.
 </p>
 
 <a class="btn"
@@ -149,7 +178,7 @@ Accéder à l'activité
 <h2>💧 Nutrition Hydrique 2</h2>
 
 <p>
-Nouvelle version de l'activité interactive sur les besoins en eau des plantes.
+Nouvelle activité interactive sur la nutrition hydrique des végétaux.
 </p>
 
 <a class="btn"
@@ -167,22 +196,32 @@ Accéder à l'activité
 <h2>🌾 Nutrition minérale</h2>
 
 <p>
-Étude des éléments minéraux et de leur rôle dans la croissance des cultures.
+Activité en préparation.
 </p>
 
-<a class="btn"
-href="https://formateuracd.github.io/Nutrition-minerale/"
-target="_blank">
-
-Accéder à l'activité
-
-</a>
+<span class="btn coming">
+Bientôt disponible
+</span>
 
 </div>
 
 <div class="card">
 
 <h2>🧪 Diagnostic de sol</h2>
+
+<p>
+Activité en préparation.
+</p>
+
+<span class="btn coming">
+Bientôt disponible
+</span>
+
+</div>
+
+<div class="card">
+
+<h2>🚜 Calcul de fertilisation</h2>
 
 <p>
 Activité en préparation.
@@ -228,13 +267,9 @@ Bientôt disponible
 
 <footer>
 
-<p>
-<strong>Lycée Pommerit • BTS ACD</strong>
-</p>
+<p><strong>Lycée Pommerit • BTS ACD</strong></p>
 
-<p>
-Produit avec ❤️ par Tugdual Mazé
-</p>
+<p>Produit avec ❤️ par Tugdual Mazé</p>
 
 </footer>
 
