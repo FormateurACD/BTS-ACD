@@ -9,123 +9,96 @@
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-    font-family:Segoe UI, Arial, sans-serif;
-    background:#f4f7f4;
-    color:#333;
+font-family:Segoe UI,Arial,sans-serif;
+background:#f4f7f4;
+color:#333;
 }
 
 header{
-    background:linear-gradient(135deg,#2d6a4f,#40916c);
-    color:white;
-    text-align:center;
-    padding:40px 20px;
+background:linear-gradient(135deg,#2d6a4f,#40916c);
+color:white;
+text-align:center;
+padding:40px 20px;
 }
 
 .logo{
-    max-width:350px;
-    width:90%;
-    margin-bottom:25px;
-    background:white;
-    padding:15px;
-    border-radius:15px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.25);
-}
-
-header h1{
-    font-size:2.4rem;
-    margin-bottom:10px;
-}
-
-header p{
-    font-size:1.1rem;
+max-width:350px;
+width:90%;
+margin-bottom:20px;
+background:white;
+padding:15px;
+border-radius:15px;
 }
 
 .container{
-    max-width:1200px;
-    margin:auto;
-    padding:40px 20px;
+max-width:1200px;
+margin:auto;
+padding:40px 20px;
 }
 
 .section-title{
-    text-align:center;
-    margin-bottom:30px;
-    color:#2d6a4f;
+text-align:center;
+margin-bottom:30px;
+color:#2d6a4f;
 }
 
 .cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:25px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
 }
 
 .card{
-    background:white;
-    border-radius:15px;
-    padding:25px;
-    box-shadow:0 4px 15px rgba(0,0,0,0.1);
-    transition:.3s;
-}
-
-.card:hover{
-    transform:translateY(-5px);
+background:white;
+border-radius:15px;
+padding:25px;
+box-shadow:0 4px 15px rgba(0,0,0,0.1);
 }
 
 .card h2{
-    color:#2d6a4f;
-    margin-bottom:10px;
+margin-bottom:15px;
+color:#2d6a4f;
 }
 
 .card p{
-    margin-bottom:20px;
-    line-height:1.5;
+margin-bottom:20px;
+line-height:1.5;
 }
 
 .btn{
-    display:inline-block;
-    text-decoration:none;
-    background:#2d6a4f;
-    color:white;
-    padding:12px 20px;
-    border-radius:8px;
-    font-weight:bold;
-    transition:.3s;
+display:inline-block;
+padding:12px 20px;
+background:#2d6a4f;
+color:white;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
 }
 
 .btn:hover{
-    background:#1b4332;
+background:#1b4332;
 }
 
 .coming{
-    background:#e9ecef;
-    color:#666;
+background:#999;
 }
 
 footer{
-    background:#1b4332;
-    color:white;
-    text-align:center;
-    padding:30px;
-    margin-top:50px;
+background:#1b4332;
+color:white;
+text-align:center;
+padding:30px;
+margin-top:50px;
 }
 
 footer p{
-    margin:8px 0;
-}
-
-.badge{
-    display:inline-block;
-    background:#d8f3dc;
-    color:#1b4332;
-    padding:8px 15px;
-    border-radius:50px;
-    font-size:0.9rem;
-    margin-bottom:20px;
+margin:8px 0;
 }
 
 </style>
@@ -139,47 +112,44 @@ footer p{
 alt="Logo Lycée Pommerit"
 class="logo">
 
-<div class="badge">
-🌱 Ressources pédagogiques numériques
-</div>
+<h1>🌱 BTS Agronomie Cultures Durables</h1>
 
-<h1>BTS Agronomie Cultures Durables</h1>
-
-<p>
-Lycée Pommerit
-</p>
+<p>Ressources pédagogiques numériques</p>
 
 </header>
 
 <div class="container">
 
 <h2 class="section-title">
-📚 Ressources pédagogiques
+📚 Ressources BTS ACD
 </h2>
 
 <div class="cards">
 
 <div class="card">
+
 <h2>💧 Mission Hydrique</h2>
 
 <p>
-Comprendre le rôle de l'eau dans le fonctionnement des végétaux et tester ses connaissances grâce à une activité interactive.
+Comprendre le rôle de l'eau dans le fonctionnement des végétaux.
 </p>
 
 <a class="btn"
 href="https://formateuracd.github.io/Nutrition-hydrique/"
 target="_blank">
+
 Accéder à l'activité
+
 </a>
 
 </div>
 
 <div class="card">
 
-<h2>💧 Nutrition hydrique 2</h2>
+<h2>💧 Nutrition Hydrique 2</h2>
 
 <p>
-Nouvelle version de l'activité sur les besoins en eau des végétaux et le fonctionnement hydrique de la plante.
+Nouvelle version de l'activité interactive sur les besoins en eau des plantes.
 </p>
 
 <a class="btn"
@@ -192,17 +162,26 @@ Accéder à l'activité
 
 </div>
 
+<div class="card">
+
+<h2>🌾 Nutrition minérale</h2>
+
 <p>
-Activité en préparation.
+Étude des éléments minéraux et de leur rôle dans la croissance des cultures.
 </p>
 
-<span class="btn coming">
-Bientôt disponible
-</span>
+<a class="btn"
+href="https://formateuracd.github.io/Nutrition-minerale/"
+target="_blank">
+
+Accéder à l'activité
+
+</a>
 
 </div>
 
 <div class="card">
+
 <h2>🧪 Diagnostic de sol</h2>
 
 <p>
@@ -216,19 +195,7 @@ Bientôt disponible
 </div>
 
 <div class="card">
-<h2>🚜 Calcul de fertilisation</h2>
 
-<p>
-Activité en préparation.
-</p>
-
-<span class="btn coming">
-Bientôt disponible
-</span>
-
-</div>
-
-<div class="card">
 <h2>📈 Références techniques</h2>
 
 <p>
@@ -242,6 +209,7 @@ Bientôt disponible
 </div>
 
 <div class="card">
+
 <h2>✅ Révisions BTSA</h2>
 
 <p>
@@ -260,7 +228,9 @@ Bientôt disponible
 
 <footer>
 
-<p><strong>Lycée Pommerit • BTS ACD</strong></p>
+<p>
+<strong>Lycée Pommerit • BTS ACD</strong>
+</p>
 
 <p>
 Produit avec ❤️ par Tugdual Mazé
