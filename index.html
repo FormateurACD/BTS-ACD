@@ -3,65 +3,131 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ressources BTS ACD - Pommerit</title>
+
+<title>BTS ACD - Lycée Pommerit</title>
 
 <style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
-font-family:Arial,sans-serif;
-background:#f4f6f8;
-margin:0;
-padding:0;
-text-align:center;
+    font-family:Segoe UI, Arial, sans-serif;
+    background:#f4f7f4;
+    color:#333;
 }
 
 header{
-background:#2e7d32;
-color:white;
-padding:30px;
+    background:linear-gradient(135deg,#2d6a4f,#40916c);
+    color:white;
+    text-align:center;
+    padding:40px 20px;
 }
 
 .logo{
-max-width:180px;
-margin-bottom:15px;
+    max-width:350px;
+    width:90%;
+    margin-bottom:25px;
+    background:white;
+    padding:15px;
+    border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.25);
 }
 
-h1{
-margin:0;
+header h1{
+    font-size:2.4rem;
+    margin-bottom:10px;
+}
+
+header p{
+    font-size:1.1rem;
 }
 
 .container{
-max-width:900px;
-margin:auto;
-padding:30px;
+    max-width:1200px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:30px;
+    color:#2d6a4f;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
 }
 
 .card{
-background:white;
-padding:20px;
-margin:15px;
-border-radius:12px;
-box-shadow:0 2px 8px rgba(0,0,0,0.15);
+    background:white;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    transition:.3s;
 }
 
-.button{
-display:inline-block;
-padding:15px 25px;
-background:#1976d2;
-color:white;
-text-decoration:none;
-border-radius:8px;
-font-weight:bold;
+.card:hover{
+    transform:translateY(-5px);
 }
 
-.button:hover{
-background:#0d47a1;
+.card h2{
+    color:#2d6a4f;
+    margin-bottom:10px;
+}
+
+.card p{
+    margin-bottom:20px;
+    line-height:1.5;
+}
+
+.btn{
+    display:inline-block;
+    text-decoration:none;
+    background:#2d6a4f;
+    color:white;
+    padding:12px 20px;
+    border-radius:8px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#1b4332;
+}
+
+.coming{
+    background:#e9ecef;
+    color:#666;
 }
 
 footer{
-margin-top:40px;
-padding:20px;
-color:#666;
+    background:#1b4332;
+    color:white;
+    text-align:center;
+    padding:30px;
+    margin-top:50px;
 }
+
+footer p{
+    margin:8px 0;
+}
+
+.badge{
+    display:inline-block;
+    background:#d8f3dc;
+    color:#1b4332;
+    padding:8px 15px;
+    border-radius:50px;
+    font-size:0.9rem;
+    margin-bottom:20px;
+}
+
 </style>
 </head>
 
@@ -69,44 +135,122 @@ color:#666;
 
 <header>
 
-<h1>🌱 BTS Agronomie Cultures Durables</h1>
+<img src="logo-pommerit.png"
+alt="Logo Lycée Pommerit"
+class="logo">
 
-<h2>EPL Pommerit</h2>
+<div class="badge">
+🌱 Ressources pédagogiques numériques
+</div>
 
-<p>Plateforme des ressources numériques</p>
+<h1>BTS Agronomie Cultures Durables</h1>
+
+<p>
+Lycée Pommerit
+</p>
 
 </header>
 
 <div class="container">
 
+<h2 class="section-title">
+📚 Ressources pédagogiques
+</h2>
+
+<div class="cards">
+
 <div class="card">
-<h2>💧 Mission Hydrique : Sauve la Plante !</h2>
+<h2>💧 Mission Hydrique</h2>
 
-<p>Comprendre la nutrition hydrique des végétaux.</p>
+<p>
+Comprendre le rôle de l'eau dans le fonctionnement des végétaux et tester ses connaissances grâce à une activité interactive.
+</p>
 
-<a class="button"
-href="https://formateuracd.github.io/Nutrition-hydrique/">
+<a class="btn"
+href="https://formateuracd.github.io/Nutrition-hydrique/"
+target="_blank">
 Accéder à l'activité
 </a>
 
 </div>
 
 <div class="card">
-<h2>🧪 Diagnostic de Sol</h2>
+<h2>🌾 Nutrition minérale</h2>
 
-<p>À venir</p>
+<p>
+Activité en préparation.
+</p>
+
+<span class="btn coming">
+Bientôt disponible
+</span>
+
+</div>
+
+<div class="card">
+<h2>🧪 Diagnostic de sol</h2>
+
+<p>
+Activité en préparation.
+</p>
+
+<span class="btn coming">
+Bientôt disponible
+</span>
+
 </div>
 
 <div class="card">
 <h2>🚜 Calcul de fertilisation</h2>
 
-<p>À venir</p>
+<p>
+Activité en préparation.
+</p>
+
+<span class="btn coming">
+Bientôt disponible
+</span>
+
+</div>
+
+<div class="card">
+<h2>📈 Références techniques</h2>
+
+<p>
+Activité en préparation.
+</p>
+
+<span class="btn coming">
+Bientôt disponible
+</span>
+
+</div>
+
+<div class="card">
+<h2>✅ Révisions BTSA</h2>
+
+<p>
+QCM, jeux pédagogiques et entraînements.
+</p>
+
+<span class="btn coming">
+Bientôt disponible
+</span>
+
+</div>
+
 </div>
 
 </div>
 
 <footer>
-BTS ACD • EPL Pommerit
+
+<p><strong>Lycée Pommerit • BTS ACD</strong></p>
+
+<p>
+Produit avec ❤️ par Tugdual Mazé
+</p>
+
 </footer>
 
 </body>
