@@ -20,6 +20,33 @@ background:#edf1ee;
 color:#2d2d2d;
 }
 
+/* Bouton de retour vers l'accueil */
+.home-button{
+position:fixed;
+top:18px;
+left:18px;
+z-index:1000;
+display:inline-flex;
+align-items:center;
+gap:8px;
+background:#ffffff;
+color:#245b40;
+padding:12px 18px;
+border:2px solid #245b40;
+border-radius:12px;
+text-decoration:none;
+font-weight:700;
+box-shadow:0 3px 10px rgba(0,0,0,.18);
+transition:background .2s, transform .2s;
+}
+.home-button:hover{
+background:#e8f5e9;
+transform:translateY(-2px);
+}
+@media(max-width:600px){
+.home-button{top:10px;left:10px;padding:9px 12px;font-size:.9rem;}
+}
+
 header{
 background:#3f8f67;
 color:white;
@@ -130,6 +157,10 @@ margin:10px 0;
 </head>
 
 <body>
+
+<a class="home-button" href="https://formateuracd.github.io/Accueil/" aria-label="Retour à l'accueil">
+← Retour à l'accueil
+</a>
 
 <header>
 
