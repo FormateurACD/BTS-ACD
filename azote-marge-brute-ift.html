@@ -84,6 +84,12 @@ input{width:72px;padding:4px;border:1px solid var(--bd);background:var(--in);col
  .formulaPractice td:nth-child(3){display:block;width:100%;padding:5px 2px}
 }
 
+
+/* Barre de défilement horizontale flottante pour le tableau Excel */
+#excelFloatingScroll{position:fixed;left:0;right:0;bottom:0;z-index:9998;height:22px;overflow-x:auto;overflow-y:hidden;background:rgba(20,29,23,.94);border-top:1px solid var(--bd);box-shadow:0 -3px 12px rgba(0,0,0,.22);}
+#excelFloatingScroll>div{height:1px;}
+#excelFloatingScroll[hidden]{display:none!important;}
+body{padding-bottom:34px}
 </style></head><body>
 <h1>🌾 Azote, marge brute et IFT – exercices BTS ACD</h1>
 <div>Entraîne-toi aux séances 1 à 3 : saisis tes résultats dans les cases, puis clique sur « Vérifier ». Tolérance d’arrondi acceptée. Virgule ou point.</div>
@@ -190,6 +196,14 @@ async function showExcel(){
     table.append(tr);
   });
   wrap.innerHTML='';wrap.append(table);
+  // Barre horizontale flottante, synchronisée avec le tableau Excel
+  const floating=document.createElement('div');floating.id='excelFloatingScroll';floating.setAttribute('aria-label','Défilement horizontal du tableau');
+  const floatingInner=document.createElement('div');floating.append(floatingInner);document.body.append(floating);
+  let syncing=false;
+  function updateFloatingScroll(){const needed=wrap.scrollWidth>wrap.clientWidth+2;floating.hidden=!needed;floatingInner.style.width=wrap.scrollWidth+'px';if(needed)floating.scrollLeft=wrap.scrollLeft;}
+  wrap.addEventListener('scroll',()=>{if(syncing)return;syncing=true;floating.scrollLeft=wrap.scrollLeft;syncing=false;});
+  floating.addEventListener('scroll',()=>{if(syncing)return;syncing=true;wrap.scrollLeft=floating.scrollLeft;syncing=false;});
+  window.addEventListener('resize',updateFloatingScroll);requestAnimationFrame(updateFloatingScroll);
   const backButton=document.createElement('button');
   backButton.type='button';backButton.id='backToFormulas';backButton.textContent='↑ Retour aux formules';
   document.body.append(backButton);
