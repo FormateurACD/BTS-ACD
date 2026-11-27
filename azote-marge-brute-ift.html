@@ -41,7 +41,13 @@ input{width:72px;padding:4px;border:1px solid var(--bd);background:var(--in);col
 .excel .rowNumber{background:var(--card);color:var(--g);font-weight:bold;text-align:center;min-width:32px}
 .excel td.focusCell{outline:4px solid #e49b24!important;outline-offset:-4px;background:#fff2c9!important;color:#30220b!important}
 .formulaPractice .formulaAddress{display:block;font-size:1.05em}
-.formulaPractice .locateButton{margin-top:5px;font-size:.85em;padding:4px 7px}
+.formulaPractice td:first-child{width:112px;min-width:112px;max-width:112px}
+.formulaPractice .formulaAddress{white-space:normal;text-align:center}
+.formulaPractice .formulaAddress strong{display:block;white-space:nowrap;margin-bottom:5px}
+.formulaPractice .locateButton{display:block;box-sizing:border-box;width:100%;min-width:0!important;max-width:100%;margin:4px 0 0;padding:5px 4px;font-size:.72rem;line-height:1.2;white-space:normal;overflow-wrap:anywhere;text-align:center}
+.formulaPractice tr{height:auto}
+.formulaPractice td{height:auto;overflow:visible}
+.formulaPractice .formulaInput{min-height:38px}
 .formulaPractice .formulaInput{min-height:38px}
 .formulaPractice input.ok{background:var(--ok)}
 .formulaPractice input.ko{background:var(--ko)}
@@ -54,8 +60,11 @@ input{width:72px;padding:4px;border:1px solid var(--bd);background:var(--in);col
  .formulaPractice tr:first-child{display:none}
  .formulaPractice tr{border:1px solid var(--bd);border-radius:7px;margin:8px 0;padding:6px}
  .formulaPractice td{border:0;padding:3px 2px}
- .formulaPractice td:nth-child(1){display:inline-block;width:auto;padding-right:10px}
- .formulaPractice td:nth-child(2){display:inline-block;width:auto}
+ .formulaPractice td:first-child{display:flex;align-items:center;gap:10px;width:100%;min-width:0;max-width:none;padding:5px 2px}
+ .formulaPractice .formulaAddress strong{margin:0;min-width:42px}
+ .formulaPractice .locateButton{width:auto;max-width:190px;margin:0;padding:5px 8px;font-size:.78rem}
+ .formulaPractice td:nth-child(2){display:block;width:100%;padding:5px 2px;font-weight:600}
+ .formulaPractice td:nth-child(3){display:block;width:100%;padding:5px 2px}
 }
 
 </style></head><body>
