@@ -154,6 +154,57 @@ border:none;
 .empty-folder{padding:12px 4px;color:#59665e;font-size:1.05rem;}
 @media(max-width:650px){.folder summary{align-items:flex-start;flex-direction:column;font-size:1.3rem;padding:20px;}.folder summary small{text-align:left;}.folder-content{padding:15px;}}
 
+
+/* Mise en page avec menu latéral */
+.page-layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:26px;max-width:1600px;margin:0 auto;padding:28px 24px;align-items:start;}
+.sidebar{position:sticky;top:18px;background:#1b4332;color:#fff;border-radius:18px;padding:18px 14px;box-shadow:0 6px 22px rgba(0,0,0,.13);max-height:calc(100vh - 36px);overflow-y:auto;}
+.sidebar-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:4px 6px 16px;border-bottom:1px solid rgba(255,255,255,.2);}
+.sidebar-brand{font-size:1.15rem;font-weight:800;display:flex;align-items:center;gap:8px;}
+.sidebar-toggle{border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.12);color:#fff;border-radius:8px;width:32px;height:32px;font-size:1.3rem;cursor:pointer;}
+.side-nav{display:flex;flex-direction:column;gap:9px;padding-top:14px;}
+.side-nav a{color:#f2f8f4;text-decoration:none;display:block;padding:9px 10px;border-radius:9px;font-size:.94rem;line-height:1.35;}
+.side-nav a:hover{background:rgba(255,255,255,.13);}
+.nav-home{font-weight:700;background:rgba(255,255,255,.1);}
+.nav-group{border-radius:10px;overflow:hidden;}
+.nav-group summary{cursor:pointer;list-style:none;padding:11px 10px;border-radius:9px;font-weight:750;display:flex;align-items:center;gap:8px;}
+.nav-group summary::-webkit-details-marker{display:none;}
+.nav-group summary::after{content:"＋";margin-left:auto;font-size:1rem;}
+.nav-group[open] summary::after{content:"−";}
+.nav-group summary:hover{background:rgba(255,255,255,.1);}
+.nav-sub{padding:2px 0 7px 13px;border-left:2px solid rgba(255,255,255,.25);margin-left:14px;}
+.nav-sub a{font-size:.86rem;padding:7px 9px;color:#dcebe1;}
+.main-content{min-width:0;}
+.main-content .container{max-width:none;padding:28px 8px 45px;margin:0;}
+.main-content .section-title{font-size:2.2rem;margin-bottom:30px;}
+body.sidebar-collapsed .page-layout{grid-template-columns:76px minmax(0,1fr);}
+body.sidebar-collapsed .sidebar{padding:18px 9px;}
+body.sidebar-collapsed .sidebar-brand span,
+body.sidebar-collapsed .side-nav span,
+body.sidebar-collapsed .nav-group summary::after,
+body.sidebar-collapsed .nav-sub{display:none;}
+body.sidebar-collapsed .sidebar-heading{justify-content:center;flex-direction:column;}
+body.sidebar-collapsed .nav-group summary{justify-content:center;font-size:1.25rem;}
+body.sidebar-collapsed .nav-home{text-align:center;font-size:1.2rem;}
+@media(max-width:850px){
+.page-layout{grid-template-columns:1fr;padding:16px;gap:14px;}
+.sidebar{position:relative;top:auto;max-height:none;}
+.sidebar-heading{padding-bottom:10px;}
+.side-nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));}
+body.sidebar-collapsed .page-layout{grid-template-columns:1fr;}
+body.sidebar-collapsed .sidebar-brand span,
+body.sidebar-collapsed .side-nav span,
+body.sidebar-collapsed .nav-group summary::after,
+body.sidebar-collapsed .nav-sub{display:initial;}
+body.sidebar-collapsed .sidebar-heading{justify-content:space-between;flex-direction:row;}
+body.sidebar-collapsed .nav-group summary{justify-content:flex-start;font-size:1rem;}
+body.sidebar-collapsed .nav-home{text-align:left;font-size:.94rem;}
+}
+@media(max-width:600px){
+.page-layout{padding:10px;gap:10px;}
+.main-content .container{padding:18px 2px 30px;}
+.main-content .section-title{font-size:1.7rem;}
+}
+
 footer{
 background:#1b4332;
 color:white;
@@ -191,6 +242,43 @@ class="logo">
 
 </header>
 
+<div class="page-layout">
+<aside class="sidebar" aria-label="Menu de navigation">
+<div class="sidebar-heading">
+<div class="sidebar-brand">📚 <span>Navigation</span></div>
+<button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Réduire le menu" aria-expanded="true">‹</button>
+</div>
+<nav class="side-nav">
+<a class="nav-home" href="https://formateuracd.github.io/BTS-ACD/">⌂ <span>Accueil des ressources</span></a>
+<details class="nav-group" open>
+<summary>💻 <span>TIM</span></summary>
+<div class="nav-sub">
+<a href="#tim">Voir le dossier</a>
+<a href="https://formateuracd.github.io/BTS-ACD/azote-marge-brute-ift.html" target="_blank" rel="noopener noreferrer">Azote, marge brute et IFT</a>
+</div>
+</details>
+<details class="nav-group" open>
+<summary>🌱 <span>Biologie-Écologie</span></summary>
+<div class="nav-sub">
+<a href="#bio-ecologie">Voir le dossier</a>
+<a href="https://formateuracd.github.io/Nutrition-hydrique/" target="_blank" rel="noopener noreferrer">Mission hydrique</a>
+<a href="https://formateuracd.github.io/Nutrition-hydrique-2/" target="_blank" rel="noopener noreferrer">Nutrition hydrique 2</a>
+<a href="https://formateuracd.github.io/Potentiel-Osmotique/" target="_blank" rel="noopener noreferrer">Potentiel osmotique</a>
+<a href="https://formateuracd.github.io/La-photosynth-se/" target="_blank" rel="noopener noreferrer">Photosynthèse</a>
+</div>
+</details>
+<details class="nav-group" open>
+<summary>🚜 <span>Agronomie</span></summary>
+<div class="nav-sub">
+<a href="#agronomie">Voir le dossier</a>
+<a href="https://formateuracd.github.io/Diagnostic-de-compaction-des-sols-ACD/" target="_blank" rel="noopener noreferrer">Diagnostic de compaction</a>
+<a href="https://formateuracd.github.io/TerraTest-Labo-HCl-H2O2/" target="_blank" rel="noopener noreferrer">TerraTest Labo</a>
+<a href="https://formateuracd.github.io/AgroTexture-GEPPA/" target="_blank" rel="noopener noreferrer">AgroTexture GEPPA</a>
+</div>
+</details>
+</nav>
+</aside>
+<main class="main-content">
 <div class="container">
 
 <h2 class="section-title">
@@ -200,7 +288,7 @@ class="logo">
 
 <div class="folders">
 
-<details class="folder" open>
+<details class="folder" id="tim" open>
 <summary><span>💻 TIM</span><small>Technologies de l'information et du multimédia</small></summary>
 <div class="folder-content">
 <div class="cards">
@@ -214,7 +302,7 @@ class="logo">
 </div>
 </details>
 
-<details class="folder" open>
+<details class="folder" id="bio-ecologie" open>
 <summary><span>🌱 Biologie-Écologie</span><small>Fonctionnement du vivant et écologie des agroécosystèmes</small></summary>
 <div class="folder-content">
 <div class="cards">
@@ -247,7 +335,7 @@ class="logo">
 </div>
 </details>
 
-<details class="folder" open>
+<details class="folder" id="agronomie" open>
 <summary><span>🚜 Agronomie</span><small>Sols, systèmes de culture et conduite des productions</small></summary>
 <div class="folder-content">
 <div class="cards">
@@ -265,11 +353,6 @@ class="logo">
 <h2>🌍 AgroTexture GEPPA</h2>
 <p>Détermination de la texture d'un sol à l'aide de la méthode GEPPA.</p>
 <a class="btn" href="https://formateuracd.github.io/AgroTexture-GEPPA/" target="_blank" rel="noopener noreferrer">Accéder à l'activité</a>
-</div>
-<div class="card">
-<h2>🌾 Azote, marge brute et IFT</h2>
-<p>Entraînement interactif en trois séances : pression azotée et efficience, bilan global azoté, marge brute et indicateurs de fréquence de traitement (IFT).</p>
-<a class="btn" href="https://formateuracd.github.io/BTS-ACD/azote-marge-brute-ift.html" target="_blank" rel="noopener noreferrer">Accéder à l'activité</a>
 </div>
 <div class="card">
 <h2>🧪 Diagnostic de sol</h2>
@@ -298,6 +381,8 @@ class="logo">
 </div>
 
 </div>
+</main>
+</div>
 
 <footer>
 
@@ -306,6 +391,20 @@ class="logo">
 <p>Produit avec ❤️ par Tugdual Mazé</p>
 
 </footer>
+
+
+<script>
+(function(){
+  const toggle = document.getElementById('sidebarToggle');
+  if(!toggle) return;
+  toggle.addEventListener('click', function(){
+    const collapsed = document.body.classList.toggle('sidebar-collapsed');
+    toggle.textContent = collapsed ? '›' : '‹';
+    toggle.setAttribute('aria-expanded', String(!collapsed));
+    toggle.setAttribute('aria-label', collapsed ? 'Développer le menu' : 'Réduire le menu');
+  });
+})();
+</script>
 
 </body>
 </html>
