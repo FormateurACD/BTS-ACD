@@ -195,7 +195,7 @@ async function showExcel(){
       if(row.r===1)titleText='Séance 1 – Pression azotée et efficience de l’azote – EARL de Pink-Korgui (120 ha)';
       if(row.r===15)titleText='Séance 2 – Bilan Global Azoté (BGA) – EARL de Pink-Korgui, 100 ha';
       if(row.r===36)titleText='Séance 3 – Marge brute et IFT – EARL de Pink-Korgui, 80 ha';
-      td.textContent=titleText;td.className=titles.includes(row.r)?'excelTitle':sections.includes(row.r)?'excelSection':'excelNote';tr.append(td);table.append(tr);return;
+      td.textContent=titleText;td.colSpan=13;td.className=titles.includes(row.r)?'excelTitle':sections.includes(row.r)?'excelSection':'excelNote';tr.append(td);table.append(tr);return;
     }
     row.cells.forEach((cell,i)=>{
       const td=document.createElement('td');td.dataset.address=colName(i+1)+row.r;
