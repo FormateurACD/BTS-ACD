@@ -17,6 +17,18 @@ input{width:72px;padding:4px;border:1px solid var(--bd);background:var(--in);col
 .ok{background:var(--ok)}.ko{background:var(--ko)}
 .bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:10px 0}.sc{font-weight:bold}
 .mcq label{display:block;padding:3px 0;cursor:pointer}.ex{font-size:13px;margin-top:4px}
+
+.excel{min-width:1100px;width:max-content;max-width:none;font-size:12px}
+.excel td{min-width:72px;max-width:230px;white-space:normal;overflow-wrap:anywhere;vertical-align:middle}
+.excel td:first-child{min-width:210px}
+.excel .excelHead{background:var(--g);color:var(--bg);font-weight:bold;text-align:center}
+.excel .formulaCell{background:#dcefd6;color:#173b20}
+.excel .inputCell{color:#1454b8;font-weight:600}
+.excel .excelTitle{font-size:15px;font-weight:bold;color:var(--g);background:var(--card);text-align:left;padding:9px}
+.excel .excelSection{font-weight:bold;color:var(--g);background:var(--card);text-align:left;padding:7px}
+.excel .excelNote{font-size:12px;text-align:left;background:var(--card);padding:7px;white-space:normal}
+.excel tr.spacer td{border:0;height:8px;padding:0}
+
 </style></head><body>
 <h1>🌾 Azote, marge brute et IFT – exercices BTS ACD</h1>
 <div>Entraîne-toi aux séances 1 à 3 : saisis tes résultats dans les cases, puis clique sur « Vérifier ». Tolérance d’arrondi acceptée. Virgule ou point.</div>
@@ -76,4 +88,42 @@ function show(i){cur=i;[...nav.children].forEach((b,k)=>b.className=k==i?'on':''
  document.getElementById('c').onclick=()=>I().forEach(n=>{n.value=isNaN(+n.dataset.a)?'nc':fr(+n.dataset.a,2);n.className='ok'});
  document.getElementById('x').onclick=()=>{I().forEach(n=>{n.value='';n.className=''});document.getElementById('sc').textContent=''}}
 show(0);
+
+const correctionData="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";
+async function showExcel(){
+  [...nav.children].forEach((b,k)=>b.className=k===3?'on':'');
+  app.innerHTML='<h2>Correction Excel – tableau corrigé</h2><div class="ctx">Reprise de la feuille « Tableau » du classeur fourni. Les cellules bleues correspondent aux données saisies dans Excel ; les cellules vertes affichent les résultats calculés des formules. Les formules d’origine sont visibles au survol des cellules vertes.</div><div class="w" id="excelWrap"><p>Chargement du tableau…</p></div>';
+  const bytes=Uint8Array.from(atob(correctionData),c=>c.charCodeAt(0));
+  const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate'));
+  const rows=JSON.parse(await new Response(stream).text());
+  const wrap=document.getElementById('excelWrap'),table=document.createElement('table');
+  table.className='excel';
+  const heads=[4,19,26,40,50,65],sections=[18,25,39,49,64,78],titles=[1,15,36];
+  function fmt(v,r,c){
+    if(typeof v!=='number') return v==null?'':String(v);
+    if((r===62||r===76)&&c===6) return new Intl.NumberFormat('fr-FR',{maximumFractionDigits:1}).format(v*100)+' %';
+    return new Intl.NumberFormat('fr-FR',{maximumFractionDigits:2}).format(v);
+  }
+  rows.forEach(row=>{
+    if(row.blank){const tr=document.createElement('tr');tr.className='spacer';const td=document.createElement('td');td.colSpan=13;td.innerHTML='&nbsp;';tr.append(td);table.append(tr);return;}
+    const tr=document.createElement('tr');tr.dataset.row=row.r;
+    const active=row.cells.map((c,i)=>c?i:-1).filter(i=>i>=0);
+    if((titles.includes(row.r)||sections.includes(row.r)||[2,3,16,17,33,37,38,82].includes(row.r))&&active.length===1){
+      const td=document.createElement('td');td.colSpan=13;td.textContent=row.cells[active[0]].v??'';td.className=titles.includes(row.r)?'excelTitle':sections.includes(row.r)?'excelSection':'excelNote';tr.append(td);table.append(tr);return;
+    }
+    row.cells.forEach((cell,i)=>{
+      const td=document.createElement('td');
+      if(!cell){tr.append(td);return;}
+      td.textContent=fmt(cell.v,row.r,i+1);
+      if(cell.t==='formula'){td.classList.add('formulaCell');if(cell.f)td.title=cell.f;}
+      else if(cell.t==='input'){td.classList.add('inputCell');}
+      if(heads.includes(row.r))td.classList.add('excelHead');
+      tr.append(td);
+    });
+    table.append(tr);
+  });
+  wrap.innerHTML='';wrap.append(table);
+}
+const excelBtn=document.createElement('button');excelBtn.textContent='Correction Excel';excelBtn.onclick=showExcel;nav.append(excelBtn);
+
 </script></body></html>
