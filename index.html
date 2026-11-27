@@ -217,6 +217,72 @@ footer p{
 margin:10px 0;
 }
 
+
+/* Bannière d'accueil : immersion sur le terrain */
+.welcome-banner{
+  position:relative;
+  max-width:1500px;
+  min-height:340px;
+  margin:28px auto 8px;
+  padding:0 28px;
+  overflow:hidden;
+  border-radius:24px;
+  box-shadow:0 10px 28px rgba(0,0,0,.16);
+  display:flex;
+  align-items:flex-end;
+  background:#244b36;
+}
+.welcome-banner img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 55%;
+}
+.welcome-banner::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,rgba(13,40,26,.82),rgba(13,40,26,.38) 58%,rgba(13,40,26,.08));
+}
+.welcome-banner-content{
+  position:relative;
+  z-index:1;
+  max-width:720px;
+  padding:42px 12px 42px 24px;
+  color:#fff;
+}
+.welcome-banner-content .eyebrow{
+  display:inline-block;
+  margin-bottom:13px;
+  padding:7px 13px;
+  border-radius:999px;
+  background:rgba(255,255,255,.18);
+  font-size:.9rem;
+  font-weight:700;
+  letter-spacing:.04em;
+}
+.welcome-banner-content h2{
+  margin:0 0 12px;
+  font-size:clamp(1.8rem,4vw,3.2rem);
+  line-height:1.12;
+}
+.welcome-banner-content p{
+  font-size:clamp(1rem,1.8vw,1.25rem);
+  line-height:1.55;
+  max-width:620px;
+}
+@media(max-width:850px){
+  .welcome-banner{margin:16px 16px 0;min-height:300px;padding:0 14px;}
+  .welcome-banner-content{padding:32px 8px 30px;}
+}
+@media(max-width:600px){
+  .welcome-banner{min-height:280px;margin:12px 10px 0;border-radius:17px;}
+  .welcome-banner img{object-position:55% center;}
+  .welcome-banner::after{background:linear-gradient(0deg,rgba(13,40,26,.88),rgba(13,40,26,.2));}
+}
+
 </style>
 </head>
 
@@ -241,6 +307,15 @@ class="logo">
 <p>Lycée Pommerit</p>
 
 </header>
+
+<section class="welcome-banner" aria-label="Les étudiants du BTS ACD en observation sur le terrain">
+<img src="images/terrain-observation.jpg" alt="Étudiants du BTS ACD réunis autour d'une fosse pédologique lors d'une observation de terrain">
+<div class="welcome-banner-content">
+<span class="eyebrow">BTS AGRONOMIE CULTURES DURABLES</span>
+<h2>Apprendre, observer, comprendre et agir sur le terrain</h2>
+<p>Des ressources pédagogiques pour explorer les sols, les cultures et le fonctionnement des agroécosystèmes.</p>
+</div>
+</section>
 
 <div class="page-layout">
 <aside class="sidebar" aria-label="Menu de navigation">
