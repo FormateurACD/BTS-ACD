@@ -1,4 +1,4 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Azote, marge brute et IFT – BTS ACD</title>
+<!doctype html><html lang="fr" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Azote, marge brute et IFT – BTS ACD</title>
 <style>
 :root{--bg:#fff;--fg:#1c2b22;--card:#f1f6f1;--bd:#b9c9bd;--g:#2e5e3e;--ok:#cfeccb;--ko:#f6d3cf;--in:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#131915;--fg:#e6eee8;--card:#1c251f;--bd:#3b4b40;--g:#82c493;--ok:#245029;--ko:#5a2926;--in:#0f140f;color-scheme:dark}}
@@ -128,6 +128,16 @@ const SE=[
  q:[{q:'La mécanisation fait-elle partie des charges opérationnelles ?',o:['oui','non : elle intervient dans la marge semi-nette','seulement pour le maïs'],a:1,e:'Les charges opérationnelles : semences, engrais, produits phytosanitaires.'},{q:'Traitement sur 50 % de la parcelle, à la dose homologuée : IFT ?',o:['1','0,5','2'],a:1,e:'1 × 50 % = 0,5.'}]}];
 // ---------- rendu
 const nav=document.getElementById('nav'),app=document.getElementById('app');let cur=0;
+const themeButton=document.createElement('button');
+themeButton.type='button';themeButton.id='themeToggle';themeButton.textContent='☾ Mode sombre';
+themeButton.setAttribute('aria-label','Basculer entre le mode clair et le mode sombre');
+themeButton.onclick=()=>{
+ const dark=document.documentElement.getAttribute('data-theme')!=='dark';
+ document.documentElement.setAttribute('data-theme',dark?'dark':'light');
+ themeButton.textContent=dark?'☀ Mode clair':'☾ Mode sombre';
+};
+nav.append(themeButton);
+
 SE.forEach((s,i)=>{const b=document.createElement('button');b.textContent='Séance '+(i+1);b.onclick=()=>show(i);nav.append(b)});
 function show(i){cur=i;[...nav.children].forEach((b,k)=>b.className=k==i?'on':'');const s=SE[i];app.innerHTML='';
  app.insertAdjacentHTML('beforeend','<h2>'+s.t+'</h2><div class="ctx">'+s.ctx+'</div><details><summary>Rappel des formules</summary><p>'+s.f+'</p></details>');
