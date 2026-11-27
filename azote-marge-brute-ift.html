@@ -153,7 +153,7 @@ async function showExcel(){
   ];
   const host=practice.querySelector('#formulaGroups');
   groups.forEach(group=>{
-    const items=formulaCells.filter(x=>{const n=+(x.address.match(/\\d+/)||[])[0];return n>=group.min&&n<=group.max});
+    const items=formulaCells.filter(x=>{const n=+(x.address.match(/\d+/)||[])[0];return n>=group.min&&n<=group.max});
     if(!items.length)return;
     const section=document.createElement('details');section.open=true;
     const summary=document.createElement('summary');summary.textContent=group.name+' ('+items.length+' formules)';section.append(summary);
@@ -180,7 +180,7 @@ async function showExcel(){
   verify.onclick=()=>{
     const inputs=[...practice.querySelectorAll('.formulaInput')];let score=0;
     inputs.forEach(input=>{
-      const norm=s=>s.toUpperCase().replace(/\\s+/g,'').replace(/;/g,',');
+      const norm=s=>s.toUpperCase().replace(/\s+/g,'').replace(/;/g,',');
       const ok=norm(input.value)===norm(input.dataset.expected);
       input.classList.toggle('ok',ok);input.classList.toggle('ko',!ok&&input.value.trim()!=='');if(ok)score++;
     });
