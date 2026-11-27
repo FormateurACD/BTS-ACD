@@ -40,8 +40,12 @@ input{width:72px;padding:4px;border:1px solid var(--bd);background:var(--in);col
 .excel .coordHead{position:sticky;top:0;background:#dce8df;color:#1c2b22;font-weight:bold;text-align:center;min-width:30px;padding:4px}
 .excel .rowNumber{background:var(--card);color:var(--g);font-weight:bold;text-align:center;min-width:32px}
 .excel td.focusCell{outline:4px solid #e49b24!important;outline-offset:-4px;background:#fff2c9!important;color:#30220b!important}
-#backToFormulas{position:fixed;z-index:9999;right:16px;bottom:16px;display:none;box-shadow:0 4px 16px rgba(0,0,0,.35);padding:12px 16px;border-radius:10px;font-weight:700}
+#backToFormulas{position:fixed;z-index:9999;right:16px;bottom:16px;display:none;background:#c62828!important;color:#fff!important;border:2px solid #fff!important;box-shadow:0 5px 18px rgba(120,0,0,.4);padding:13px 18px;border-radius:999px;font-weight:800;font-size:1rem}
 #backToFormulas.visible{display:block}
+#backToFormulas:hover{background:#a71919!important;transform:translateY(-2px)}
+.formulaPractice .locateButton{display:inline-flex;align-items:center;justify-content:center;gap:5px;width:auto;min-width:0!important;max-width:100%;margin:4px auto 0;padding:5px 9px;border:1px solid var(--g);border-radius:999px;background:rgba(127,190,145,.10);color:var(--g);font-size:.76rem;line-height:1.15;font-weight:700;white-space:nowrap;overflow-wrap:normal;text-align:center;cursor:pointer}
+.formulaPractice .locateButton:hover{background:var(--g);color:var(--bg)}
+.formulaPractice .formulaAddress strong{margin-bottom:3px}
 
 .formulaPractice .formulaAddress{display:block;font-size:1.05em}
 .formulaPractice td:first-child{width:112px;min-width:112px;max-width:112px}
@@ -214,7 +218,7 @@ async function showExcel(){
       const tr=document.createElement('tr');
       const addr=document.createElement('td');addr.className='formulaAddress';
       const addressLabel=document.createElement('strong');addressLabel.textContent=item.address;addr.append(addressLabel);
-      const locate=document.createElement('button');locate.type='button';locate.className='locateButton';locate.textContent='Repérer dans le tableau';
+      const locate=document.createElement('button');locate.type='button';locate.className='locateButton';locate.textContent='⌖ Localiser';
       locate.onclick=()=>{
         const target=wrap.querySelector('[data-address="'+item.address+'"]');
         if(target){
