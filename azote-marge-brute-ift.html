@@ -28,15 +28,28 @@ input{width:72px;padding:4px;border:1px solid var(--bd);background:var(--in);col
 .excel .excelSection{font-weight:bold;color:var(--g);background:var(--card);text-align:left;padding:7px}
 .excel .excelNote{font-size:12px;text-align:left;background:var(--card);padding:7px;white-space:normal}
 .excel tr.spacer td{border:0;height:8px;padding:0}
-.formulaPractice{width:100%;min-width:720px}
-.formulaPractice td{text-align:left;vertical-align:middle}
-.formulaPractice td:first-child{text-align:center}
-.formulaPractice .formulaAddress{font-weight:bold;color:var(--g);white-space:nowrap}
-.formulaPractice input{width:100%;max-width:260px;text-align:left}
+.formulaPractice{width:100%;min-width:0;table-layout:fixed}
+.formulaPractice th,.formulaPractice td{padding:7px 5px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
+.formulaPractice th:nth-child(1){width:62px}
+.formulaPractice th:nth-child(2){width:34%}
+.formulaPractice th:nth-child(3){width:auto}
+.formulaPractice .formulaAddress{font-weight:bold;color:var(--g);white-space:nowrap;text-align:center}
+.formulaPractice input{box-sizing:border-box;width:100%;max-width:none;text-align:left}
 .formulaPractice code{display:block;white-space:normal;overflow-wrap:anywhere;margin-top:6px;color:var(--g);font-weight:bold}
 .formulaPractice input.ok{background:var(--ok)}
 .formulaPractice input.ko{background:var(--ko)}
-#formulaGroups details{overflow-x:auto}
+.formulaPractice .revealLine{margin-top:6px}
+.formulaPractice details{overflow:visible}
+#formulaGroups details{overflow:visible}
+@media(max-width:600px){
+ .formulaPractice,.formulaPractice tbody,.formulaPractice tr,.formulaPractice td{display:block;width:100%;box-sizing:border-box}
+ .formulaPractice thead{display:none}
+ .formulaPractice tr:first-child{display:none}
+ .formulaPractice tr{border:1px solid var(--bd);border-radius:7px;margin:8px 0;padding:6px}
+ .formulaPractice td{border:0;padding:3px 2px}
+ .formulaPractice td:nth-child(1){display:inline-block;width:auto;padding-right:10px}
+ .formulaPractice td:nth-child(2){display:inline-block;width:auto}
+}
 
 </style></head><body>
 <h1>🌾 Azote, marge brute et IFT – exercices BTS ACD</h1>
@@ -164,15 +177,21 @@ async function showExcel(){
     const section=document.createElement('details');section.open=true;
     const summary=document.createElement('summary');summary.textContent=group.name+' ('+items.length+' formules)';section.append(summary);
     const tbl=document.createElement('table');tbl.className='formulaPractice';
-    const head=document.createElement('tr');['Cellule','Calcul à effectuer','Ta formule','Correction'].forEach(v=>{const th=document.createElement('th');th.textContent=v;head.append(th)});tbl.append(head);
+    const head=document.createElement('tr');['Cellule','Calcul à effectuer','Saisir la formule'].forEach(v=>{const th=document.createElement('th');th.textContent=v;head.append(th)});tbl.append(head);
     items.forEach(item=>{
       const tr=document.createElement('tr');
       const addr=document.createElement('td');addr.textContent=item.address;addr.className='formulaAddress';tr.append(addr);
       const desc=document.createElement('td');desc.textContent=item.label;tr.append(desc);
-      const answer=document.createElement('td');const input=document.createElement('input');input.className='formulaInput';input.placeholder='Saisir la formule';input.style.width='min(100%,260px)';input.style.textAlign='left';answer.append(input);tr.append(answer);
-      const correction=document.createElement('td');const reveal=document.createElement('button');reveal.type='button';reveal.textContent='Voir';const code=document.createElement('code');code.className='formulaAnswer';code.textContent=item.formula;code.hidden=true;reveal.onclick=()=>{code.hidden=!code.hidden;reveal.textContent=code.hidden?'Voir':'Masquer'};correction.append(reveal,code);tr.append(correction);
+      const answer=document.createElement('td');
+      const input=document.createElement('input');input.className='formulaInput';input.placeholder='Ex. =SOMME(...)';input.setAttribute('aria-label','Formule à saisir pour '+item.address);answer.append(input);
+      const revealLine=document.createElement('div');revealLine.className='revealLine';
+      const reveal=document.createElement('button');reveal.type='button';reveal.textContent='Voir la correction';
+      const code=document.createElement('code');code.className='formulaAnswer';code.textContent=item.formula;code.hidden=true;
+      reveal.setAttribute('aria-expanded','false');
+      reveal.onclick=()=>{code.hidden=!code.hidden;reveal.textContent=code.hidden?'Voir la correction':'Masquer la correction';reveal.setAttribute('aria-expanded',String(!code.hidden))};
+      revealLine.append(reveal,code);answer.append(revealLine);tr.append(answer);
       input.dataset.expected=item.formula;input.addEventListener('input',()=>{input.classList.remove('ok','ko')});
-      tr.append();tbl.append(tr);
+      tbl.append(tr);
     });
     section.append(tbl);host.append(section);
   });
@@ -186,8 +205,10 @@ async function showExcel(){
   verify.onclick=()=>{
     const inputs=[...practice.querySelectorAll('.formulaInput')];let score=0;
     inputs.forEach(input=>{
-      const norm=s=>s.toUpperCase().replace(/\s+/g,'').replace(/;/g,',');
-      const ok=norm(input.value)===norm(input.dataset.expected);
+      const norm=s=>s.toUpperCase().replace(/^\s*=/,'').replace(/\s+/g,'').replace(/;/g,',')
+        .replace(/SOMMEPROD\(/g,'SUMPRODUCT(').replace(/SOMME.SI\(/g,'SUMIF(')
+        .replace(/SOMME\(/g,'SUM(').replace(/SI\(/g,'IF(');
+      const ok=input.value.trim()!==''&&norm(input.value)===norm(input.dataset.expected);
       input.classList.toggle('ok',ok);input.classList.toggle('ko',!ok&&input.value.trim()!=='');if(ok)score++;
     });
     practice.querySelector('#formulaScore').textContent='Résultat : '+score+' / '+inputs.length;
