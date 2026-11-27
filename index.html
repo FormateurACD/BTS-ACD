@@ -141,6 +141,19 @@ color:#555;
 border:none;
 }
 
+
+.folders{display:flex;flex-direction:column;gap:22px;}
+.folder{background:#fff;border-radius:20px;box-shadow:0 5px 20px rgba(0,0,0,.08);overflow:hidden;}
+.folder summary{list-style:none;cursor:pointer;padding:24px 30px;background:#e1eee6;color:#245b40;display:flex;align-items:center;justify-content:space-between;gap:15px;font-size:1.55rem;font-weight:800;}
+.folder summary::-webkit-details-marker{display:none;}
+.folder summary::after{content:"＋";font-size:1.5rem;}
+.folder[open] summary::after{content:"−";}
+.folder summary small{font-size:.9rem;font-weight:500;color:#456b57;text-align:right;}
+.folder-content{padding:25px;}
+.folder-content .cards{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+.empty-folder{padding:12px 4px;color:#59665e;font-size:1.05rem;}
+@media(max-width:650px){.folder summary{align-items:flex-start;flex-direction:column;font-size:1.3rem;padding:20px;}.folder summary small{text-align:left;}.folder-content{padding:15px;}}
+
 footer{
 background:#1b4332;
 color:white;
@@ -184,209 +197,96 @@ class="logo">
 📚 Ressources pédagogiques
 </h2>
 
+
+<div class="folders">
+
+<details class="folder" open>
+<summary><span>💻 TIM</span><small>Technologies de l'information et du multimédia</small></summary>
+<div class="folder-content">
+<p class="empty-folder">Aucune ressource disponible pour le moment dans ce dossier. Les prochaines ressources TIM apparaîtront ici.</p>
+</div>
+</details>
+
+<details class="folder" open>
+<summary><span>🌱 Biologie-Écologie</span><small>Fonctionnement du vivant et écologie des agroécosystèmes</small></summary>
+<div class="folder-content">
 <div class="cards">
-
 <div class="card">
-
 <h2>💧 Mission Hydrique</h2>
-
-<p>
-Comprendre le rôle de l'eau dans le fonctionnement des végétaux et tester ses connaissances grâce à une activité interactive.
-</p>
-
-<a class="btn"
-href="https://formateuracd.github.io/Nutrition-hydrique/"
-target="_blank">
-
-Accéder à l'activité
-
-</a>
-
+<p>Comprendre le rôle de l'eau dans le fonctionnement des végétaux et tester ses connaissances grâce à une activité interactive.</p>
+<a class="btn" href="https://formateuracd.github.io/Nutrition-hydrique/" target="_blank" rel="noopener noreferrer">Accéder à l'activité</a>
 </div>
-
 <div class="card">
-
 <h2>💧 Nutrition Hydrique 2</h2>
-
-<p>
-Nouvelle activité interactive sur la nutrition hydrique des végétaux.
-</p>
-
-<a class="btn"
-href="https://formateuracd.github.io/Nutrition-hydrique-2/"
-target="_blank">
-
-Accéder à l'activité
-
-</a>
-
+<p>Nouvelle activité interactive sur la nutrition hydrique des végétaux.</p>
+<a class="btn" href="https://formateuracd.github.io/Nutrition-hydrique-2/" target="_blank" rel="noopener noreferrer">Accéder à l'activité</a>
 </div>
-
 <div class="card">
-
 <h2>🧂 Potentiel osmotique</h2>
-
-<p>
-Comprendre l'influence du potentiel osmotique sur l'absorption de l'eau par les végétaux.
-</p>
-
-<a class="btn"
-href="https://formateuracd.github.io/Potentiel-Osmotique/"
-target="_blank">
-Accéder à l'activité
-</a>
-
+<p>Comprendre l'influence du potentiel osmotique sur l'absorption de l'eau par les végétaux.</p>
+<a class="btn" href="https://formateuracd.github.io/Potentiel-Osmotique/" target="_blank" rel="noopener noreferrer">Accéder à l'activité</a>
 </div>
-
 <div class="card">
-
-<h2>🧪 Diagnostic de compaction des sols</h2>
-
-<p>
-Évaluer l'état structural d'un sol et diagnostiquer les risques de tassement.
-</p>
-
-<a class="btn"
-href="https://formateuracd.github.io/Diagnostic-de-compaction-des-sols-ACD/"
-target="_blank">
-Accéder à l'activité
-</a>
-
-</div>
-
-<div class="card">
-
-<h2>🔬 TerraTest Labo (HCl, H₂O₂)</h2>
-
-<p>
-Réalisation de tests de laboratoire (effervescence calcaire et réactivité) sur les échantillons de sol.
-</p>
-
-<a class="btn"
-href="https://formateuracd.github.io/TerraTest-Labo-HCl-H2O2/"
-target="_blank">
-Accéder à l'activité
-</a>
-
-</div>
-
-<div class="card">
-
-<h2>🌍 AgroTexture GEPPA</h2>
-
-<p>
-Détermination de la texture d'un sol à l'aide de la méthode GEPPA.
-</p>
-
-<a class="btn"
-href="https://formateuracd.github.io/AgroTexture-GEPPA/"
-target="_blank">
-Accéder à l'activité
-</a>
-
-</div>
-
-<div class="card">
-
 <h2>🌿 La Photosynthèse</h2>
-
-<p>
-Comprendre les mécanismes de la photosynthèse grâce à une application pédagogique interactive.
-</p>
-
-<a class="btn"
-href="https://formateuracd.github.io/La-photosynth-se/"
-target="_blank" rel="noopener noreferrer">
-Accéder à l'activité
-</a>
-
+<p>Comprendre les mécanismes de la photosynthèse grâce à une application pédagogique interactive.</p>
+<a class="btn" href="https://formateuracd.github.io/La-photosynth-se/" target="_blank" rel="noopener noreferrer">Accéder à l'activité</a>
 </div>
-
 <div class="card">
-
-<h2>🌾 Azote, marge brute et IFT</h2>
-
-<p>
-Entraînement interactif en trois séances : pression azotée et efficience, bilan global azoté, marge brute et indicateurs de fréquence de traitement (IFT).
-</p>
-
-<a class="btn"
-href="https://formateuracd.github.io/BTS-ACD/azote-marge-brute-ift.html"
-target="_blank" rel="noopener noreferrer">
-Accéder à l'activité
-</a>
-
-</div>
-
-<div class="card">
-
 <h2>🌾 Nutrition minérale</h2>
-
-<p>
-Activité en préparation.
-</p>
-
-<span class="btn coming">
-Bientôt disponible
-</span>
-
+<p>Activité en préparation.</p>
+<span class="btn coming">Bientôt disponible</span>
 </div>
+</div>
+</div>
+</details>
 
+<details class="folder" open>
+<summary><span>🚜 Agronomie</span><small>Sols, systèmes de culture et conduite des productions</small></summary>
+<div class="folder-content">
+<div class="cards">
 <div class="card">
-
+<h2>🧪 Diagnostic de compaction des sols</h2>
+<p>Évaluer l'état structural d'un sol et diagnostiquer les risques de tassement.</p>
+<a class="btn" href="https://formateuracd.github.io/Diagnostic-de-compaction-des-sols-ACD/" target="_blank" rel="noopener noreferrer">Accéder à l'activité</a>
+</div>
+<div class="card">
+<h2>🔬 TerraTest Labo (HCl, H₂O₂)</h2>
+<p>Réalisation de tests de laboratoire (effervescence calcaire et réactivité) sur les échantillons de sol.</p>
+<a class="btn" href="https://formateuracd.github.io/TerraTest-Labo-HCl-H2O2/" target="_blank" rel="noopener noreferrer">Accéder à l'activité</a>
+</div>
+<div class="card">
+<h2>🌍 AgroTexture GEPPA</h2>
+<p>Détermination de la texture d'un sol à l'aide de la méthode GEPPA.</p>
+<a class="btn" href="https://formateuracd.github.io/AgroTexture-GEPPA/" target="_blank" rel="noopener noreferrer">Accéder à l'activité</a>
+</div>
+<div class="card">
+<h2>🌾 Azote, marge brute et IFT</h2>
+<p>Entraînement interactif en trois séances : pression azotée et efficience, bilan global azoté, marge brute et indicateurs de fréquence de traitement (IFT).</p>
+<a class="btn" href="https://formateuracd.github.io/BTS-ACD/azote-marge-brute-ift.html" target="_blank" rel="noopener noreferrer">Accéder à l'activité</a>
+</div>
+<div class="card">
 <h2>🧪 Diagnostic de sol</h2>
-
-<p>
-Activité en préparation.
-</p>
-
-<span class="btn coming">
-Bientôt disponible
-</span>
-
+<p>Activité en préparation.</p>
+<span class="btn coming">Bientôt disponible</span>
 </div>
-
 <div class="card">
-
 <h2>🚜 Calcul de fertilisation</h2>
-
-<p>
-Activité en préparation.
-</p>
-
-<span class="btn coming">
-Bientôt disponible
-</span>
-
+<p>Activité en préparation.</p>
+<span class="btn coming">Bientôt disponible</span>
 </div>
-
 <div class="card">
-
 <h2>📈 Références techniques</h2>
-
-<p>
-Activité en préparation.
-</p>
-
-<span class="btn coming">
-Bientôt disponible
-</span>
-
+<p>Activité en préparation.</p>
+<span class="btn coming">Bientôt disponible</span>
 </div>
-
 <div class="card">
-
 <h2>✅ Révisions BTSA</h2>
-
-<p>
-QCM, jeux pédagogiques et entraînements.
-</p>
-
-<span class="btn coming">
-Bientôt disponible
-</span>
-
+<p>QCM, jeux pédagogiques et entraînements.</p>
+<span class="btn coming">Bientôt disponible</span>
 </div>
+</div>
+</div>
+</details>
 
 </div>
 
