@@ -42,6 +42,9 @@ input{width:72px;padding:4px;border:1px solid var(--bd);background:var(--in);col
 .excel td.focusCell{outline:4px solid #e49b24!important;outline-offset:-4px;background:#fff2c9!important;color:#30220b!important}
 #backToFormulas{position:fixed;z-index:9999;right:16px;bottom:16px;display:none;background:#c62828!important;color:#fff!important;border:2px solid #fff!important;box-shadow:0 5px 18px rgba(120,0,0,.4);padding:13px 18px;border-radius:999px;font-weight:800;font-size:1rem}
 #backToFormulas.visible{display:block}
+.resetFormulas{background:#a62d2d!important;color:#fff!important;border:1px solid #e87979!important;font-weight:700}
+.resetFormulas:hover{background:#842020!important}
+
 #backToFormulas:hover{background:#a71919!important;transform:translateY(-2px)}
 .formulaPractice td:first-child{width:112px!important;min-width:112px!important;max-width:112px!important;box-sizing:border-box}
 .formulaPractice .formulaAddress{display:table-cell!important;vertical-align:top!important;text-align:center!important}
@@ -252,8 +255,14 @@ async function showExcel(){
     });
     section.append(tbl);host.append(section);
   });
-  practice.querySelector('#showAllFormulas').onclick=()=>practice.querySelectorAll('.formulaAnswer').forEach(e=>e.hidden=false);
-  practice.querySelector('#hideAllFormulas').onclick=()=>practice.querySelectorAll('.formulaAnswer').forEach(e=>e.hidden=true);
+  practice.querySelector('#showAllFormulas').onclick=()=>{
+    practice.querySelectorAll('.formulaAnswer').forEach(e=>e.hidden=false);
+    practice.querySelectorAll('.formulaPractice .revealLine button').forEach(b=>{b.textContent='Masquer la correction';b.setAttribute('aria-expanded','true')});
+  };
+  practice.querySelector('#hideAllFormulas').onclick=()=>{
+    practice.querySelectorAll('.formulaAnswer').forEach(e=>e.hidden=true);
+    practice.querySelectorAll('.formulaPractice .revealLine button').forEach(b=>{b.textContent='Voir la correction';b.setAttribute('aria-expanded','false')});
+  };
   practice.querySelector('#formulaGroups').addEventListener('click',e=>{
     if(e.target.matches('button'))return;
     if(e.target.id==='unused')return;
@@ -273,7 +282,22 @@ async function showExcel(){
     practice.querySelector('#formulaScore').textContent='Résultat : '+score+' / '+inputs.length+' bonnes réponses ('+filled+' saisies)';
     if(!filled)practice.querySelector('#formulaScore').textContent='Saisis au moins une formule avant de vérifier.';
   };
-  practice.querySelector('.bar').append(verify);
+  const reset=document.createElement('button');
+  reset.type='button';reset.textContent='↺ Remettre à zéro';reset.className='resetFormulas';
+  reset.title='Effacer toutes les réponses et réinitialiser le score';
+  reset.onclick=()=>{
+    practice.querySelectorAll('.formulaInput').forEach(input=>{
+      input.value='';input.classList.remove('ok','ko');
+    });
+    practice.querySelectorAll('.formulaAnswer').forEach(code=>code.hidden=true);
+    practice.querySelectorAll('.formulaPractice .revealLine button').forEach(button=>{
+      button.textContent='Voir la correction';button.setAttribute('aria-expanded','false');
+    });
+    practice.querySelector('#formulaScore').textContent='Résultat : 0 / '+practice.querySelectorAll('.formulaInput').length;
+    practice.querySelectorAll('.focusCell').forEach(cell=>cell.classList.remove('focusCell'));
+    backButton.classList.remove('visible');
+  };
+  practice.querySelector('.bar').append(verify,reset);
 }
 const excelBtn=document.createElement('button');excelBtn.textContent='Correction Excel';excelBtn.onclick=showExcel;nav.append(excelBtn);
 
