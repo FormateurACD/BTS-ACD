@@ -134,11 +134,17 @@ async function showExcel(){
   wrap.innerHTML='';wrap.append(table);
   const formulaCells=[];
   const colName=n=>{let s='';while(n){let m=(n-1)%26;s=String.fromCharCode(65+m)+s;n=Math.floor((n-1)/26)}return s};
+  const headerRows=[4,19,26,40,50,65];
   rows.forEach(row=>{
     if(!row.cells)return;
     const labelCell=row.cells.find(c=>c&&typeof c.v==='string'&&!c.v.startsWith('='));
+    const headerRow=[...headerRows].reverse().find(n=>n<row.r);
+    const headers=headerRow&&rows.find(x=>x.r===headerRow);
     row.cells.forEach((cell,i)=>{
-      if(cell&&cell.t==='formula'&&cell.f)formulaCells.push({address:colName(i+1)+row.r,label:labelCell?labelCell.v:'Calcul',formula:cell.f});
+      if(cell&&cell.t==='formula'&&cell.f){
+        const header=headers&&headers.cells[i]&&headers.cells[i].v;
+        formulaCells.push({address:colName(i+1)+row.r,label:[labelCell&&labelCell.v,header].filter(Boolean).join(' — ')||'Calcul',formula:cell.f});
+      }
     });
   });
   const practice=document.createElement('section');
