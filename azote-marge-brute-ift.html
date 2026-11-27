@@ -157,13 +157,19 @@ async function showExcel(){
   const corner=document.createElement('th');corner.className='coordHead';corner.textContent='Ligne';coordRow.append(corner);
   for(let i=1;i<=13;i++){const th=document.createElement('th');th.className='coordHead';th.textContent=colName(i);coordRow.append(th)}
   table.append(coordRow);
+  const rowsNotInExercises=new Set([12,45,46,47,78,79,80,81,82]);
   rows.forEach(row=>{
+    if(rowsNotInExercises.has(row.r))return;
     if(row.blank){const tr=document.createElement('tr');tr.className='spacer';const rn=document.createElement('td');rn.className='rowNumber';rn.textContent=row.r;tr.append(rn);const td=document.createElement('td');td.colSpan=13;td.innerHTML='&nbsp;';tr.append(td);table.append(tr);return;}
     const tr=document.createElement('tr');tr.dataset.row=row.r;
     const rn=document.createElement('td');rn.className='rowNumber';rn.textContent=row.r;tr.append(rn);
     const active=row.cells.map((c,i)=>c?i:-1).filter(i=>i>=0);
     if((titles.includes(row.r)||sections.includes(row.r)||[2,3,16,17,33,37,38,82].includes(row.r))&&active.length===1){
-      const td=document.createElement('td');td.colSpan=13;td.textContent=row.cells[active[0]].v??'';td.className=titles.includes(row.r)?'excelTitle':sections.includes(row.r)?'excelSection':'excelNote';tr.append(td);table.append(tr);return;
+      const td=document.createElement('td');let titleText=row.cells[active[0]].v??'';
+      if(row.r===1)titleText='Séance 1 – Pression azotée et efficience de l’azote – EARL de Pink-Korgui (120 ha)';
+      if(row.r===15)titleText='Séance 2 – Bilan Global Azoté (BGA) – EARL de Pink-Korgui, 100 ha';
+      if(row.r===36)titleText='Séance 3 – Marge brute et IFT – EARL de Pink-Korgui, 80 ha';
+      td.textContent=titleText;td.className=titles.includes(row.r)?'excelTitle':sections.includes(row.r)?'excelSection':'excelNote';tr.append(td);table.append(tr);return;
     }
     row.cells.forEach((cell,i)=>{
       const td=document.createElement('td');td.dataset.address=colName(i+1)+row.r;
@@ -188,7 +194,7 @@ async function showExcel(){
   const formulaCells=[];
   const headerRows=[4,19,26,40,50,65];
   rows.forEach(row=>{
-    if(!row.cells)return;
+    if(!row.cells||rowsNotInExercises.has(row.r))return;
     const labelCell=row.cells.find(c=>c&&typeof c.v==='string'&&!c.v.startsWith('='));
     const headerRow=[...headerRows].reverse().find(n=>n<row.r);
     const headers=headerRow&&rows.find(x=>x.r===headerRow);
@@ -203,11 +209,11 @@ async function showExcel(){
   practice.innerHTML='<h2>Formules Excel à écrire</h2><div class="ctx">Chaque adresse (ex. G5) désigne une cellule du tableau Excel affiché juste au-dessus : G = colonne G, 5 = ligne 5. Repère d’abord la cellule dans le tableau, puis entraîne-toi à écrire sa formule dans la zone de réponse ci-dessous. La saisie se fait ici, pas directement dans la feuille.</div><div class="bar"><button type="button" id="showAllFormulas">Afficher toutes les formules</button><button type="button" id="hideAllFormulas">Masquer les formules</button><span id="formulaScore" class="sc"></span></div><div id="formulaGroups"></div>';
   wrap.append(practice);
   const groups=[
-    {name:'Séance 1 – Pression azotée et efficience',min:5,max:12},
+    {name:'Séance 1 – Pression azotée et efficience',min:5,max:11},
     {name:'Séance 2 – Bilan Global Azoté',min:20,max:31},
-    {name:'Séance 3A – Marge brute',min:41,max:47},
+    {name:'Séance 3A – Marge brute',min:41,max:44},
     {name:'Séance 3B – IFT du blé tendre',min:51,max:62},
-    {name:'Séance 3C – IFT du colza',min:66,max:81}
+    {name:'Séance 3C – IFT du colza',min:66,max:76}
   ];
   const host=practice.querySelector('#formulaGroups');
   groups.forEach(group=>{
