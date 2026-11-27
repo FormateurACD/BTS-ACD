@@ -86,10 +86,13 @@ input{width:72px;padding:4px;border:1px solid var(--bd);background:var(--in);col
 
 
 /* Barre de défilement horizontale flottante pour le tableau Excel */
-#excelFloatingScroll{position:fixed;left:0;right:0;bottom:0;z-index:9998;height:22px;overflow-x:auto;overflow-y:hidden;background:rgba(20,29,23,.94);border-top:1px solid var(--bd);box-shadow:0 -3px 12px rgba(0,0,0,.22);}
-#excelFloatingScroll>div{height:1px;}
+#excelFloatingScroll{position:fixed;bottom:8px;z-index:9998;height:24px;overflow-x:auto;overflow-y:hidden;background:rgba(245,248,245,.98);border:1px solid #6b8f76;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.28);touch-action:pan-x;overscroll-behavior-x:contain;scrollbar-width:auto;scrollbar-color:#397d50 #dce8df;}
+#excelFloatingScroll>div{height:1px;pointer-events:none;}
 #excelFloatingScroll[hidden]{display:none!important;}
-body{padding-bottom:34px}
+#excelFloatingScroll::-webkit-scrollbar{height:14px}
+#excelFloatingScroll::-webkit-scrollbar-track{background:#dce8df;border-radius:8px}
+#excelFloatingScroll::-webkit-scrollbar-thumb{background:#397d50;border:2px solid #dce8df;border-radius:8px}
+body{padding-bottom:42px}
 </style></head><body>
 <h1>🌾 Azote, marge brute et IFT – exercices BTS ACD</h1>
 <div>Entraîne-toi aux séances 1 à 3 : saisis tes résultats dans les cases, puis clique sur « Vérifier ». Tolérance d’arrondi acceptée. Virgule ou point.</div>
@@ -206,14 +209,29 @@ async function showExcel(){
     table.append(tr);
   });
   wrap.innerHTML='';wrap.append(table);
-  // Barre horizontale flottante, synchronisée avec le tableau Excel
-  const floating=document.createElement('div');floating.id='excelFloatingScroll';floating.setAttribute('aria-label','Défilement horizontal du tableau');
+  // Barre flottante : sa largeur et sa position suivent exactement la zone du tableau.
+  if(window.__excelScrollCleanup)window.__excelScrollCleanup();
+  const floating=document.createElement('div');floating.id='excelFloatingScroll';floating.setAttribute('role','scrollbar');floating.setAttribute('aria-label','Faire défiler le tableau horizontalement');
   const floatingInner=document.createElement('div');floating.append(floatingInner);document.body.append(floating);
-  let syncing=false;
-  function updateFloatingScroll(){const needed=wrap.scrollWidth>wrap.clientWidth+2;floating.hidden=!needed;floatingInner.style.width=wrap.scrollWidth+'px';if(needed)floating.scrollLeft=wrap.scrollLeft;}
-  wrap.addEventListener('scroll',()=>{if(syncing)return;syncing=true;floating.scrollLeft=wrap.scrollLeft;syncing=false;});
-  floating.addEventListener('scroll',()=>{if(syncing)return;syncing=true;wrap.scrollLeft=floating.scrollLeft;syncing=false;});
-  window.addEventListener('resize',updateFloatingScroll);requestAnimationFrame(updateFloatingScroll);
+  let syncing=false,frame=0;
+  function syncFromWrap(){if(syncing)return;syncing=true;floating.scrollLeft=wrap.scrollLeft;syncing=false;}
+  function syncFromBar(){if(syncing)return;syncing=true;wrap.scrollLeft=floating.scrollLeft;syncing=false;}
+  function updateFloatingScroll(){
+    const rect=wrap.getBoundingClientRect(),needed=wrap.scrollWidth>wrap.clientWidth+2;
+    floating.hidden=!needed;
+    floating.style.left=Math.max(0,rect.left)+'px';
+    floating.style.width=Math.max(0,Math.min(rect.width,window.innerWidth-Math.max(0,rect.left)))+'px';
+    floatingInner.style.width=wrap.scrollWidth+'px';
+    if(needed)syncFromWrap();
+  }
+  const scheduleUpdate=()=>{cancelAnimationFrame(frame);frame=requestAnimationFrame(updateFloatingScroll);};
+  wrap.addEventListener('scroll',syncFromWrap,{passive:true});
+  floating.addEventListener('scroll',syncFromBar,{passive:true});
+  window.addEventListener('resize',scheduleUpdate,{passive:true});
+  window.addEventListener('scroll',scheduleUpdate,{passive:true});
+  const resizeObserver=new ResizeObserver(scheduleUpdate);resizeObserver.observe(wrap);
+  window.__excelScrollCleanup=()=>{cancelAnimationFrame(frame);wrap.removeEventListener('scroll',syncFromWrap);floating.removeEventListener('scroll',syncFromBar);window.removeEventListener('resize',scheduleUpdate);window.removeEventListener('scroll',scheduleUpdate);resizeObserver.disconnect();floating.remove();};
+  scheduleUpdate();
   const backButton=document.createElement('button');
   backButton.type='button';backButton.id='backToFormulas';backButton.textContent='↑ Retour aux formules';
   document.body.append(backButton);
